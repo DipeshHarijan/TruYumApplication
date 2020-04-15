@@ -1,0 +1,36 @@
+package com.cognizant.truyum.dao;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import com.cognizant.truyum.model.MenuItem;
+
+public class MenuItemDaoCollectionImplTest {
+	public static void main(String[] args) {
+		
+		System.out.println("Customer:");
+		Iterator itr2 = items.getMenuItemListCustomer().iterator();
+		while(itr2.hasNext()) {
+			System.out.print(itr2.next()+"    ");
+			System.out.println();
+		}
+
+	}
+	
+	void testGetMenuItemListCustomer
+	
+	@SuppressWarnings("rawtypes")
+	void testGetMenuItemListAdmin() throws ParseException {
+		MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
+		List<MenuItem> menuItemList = new ArrayList<MenuItem>();
+		menuItemList.addAll(menuItemDao.getMenuItemListAdmin());
+		Iterator itr = menuItemList.iterator();
+		System.out.println("Admin:");
+		while(itr.hasNext()) {
+			System.out.print(itr.next()+"    ");
+			System.out.println();
+		}
+	}
+}

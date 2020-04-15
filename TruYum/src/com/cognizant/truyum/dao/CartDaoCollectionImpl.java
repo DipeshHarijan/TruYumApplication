@@ -1,0 +1,74 @@
+package com.cognizant.truyum.dao;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import com.cognizant.truyum.model.Cart;
+import com.cognizant.truyum.model.MenuItem;
+
+public class CartDaoCollectionImpl implements CartDao {
+
+	private static HashMap<Long, Cart> userCarts;
+
+	public CartDaoCollectionImpl() {
+		if (userCarts == null) {
+			userCarts = new HashMap<Long, Cart>();
+		}
+	}
+
+	@Override
+	public void addCartItem(long userId, long menuItemId) {
+		try {
+			MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
+			MenuItem menuItem = new MenuItem();
+			menuItem = menuItemDao.getMenuItem(menuItemId);
+			if (userCarts.containsKey(userId)) {
+				userCarts.get(userId).getMenuItemList().add(menuItem);
+			} else {
+				Cart cart = new Cart(new ArrayList<MenuItem>());
+				cart.getMenuItemList().add(menuItem);
+				userCarts.put(userId, cart);
+			}
+		} catch (ParseException e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	@Override
+	public Cart getAllCartItems(long userId)  {
+		Cart cart = new Cart(new ArrayList<MenuItem>(), 0.0);
+		if (userCarts.containsKey(userId)) {
+			cart.getMenuItemList().addAll(userCarts.get(userId).getMenuItemList());
+			Iterator<MenuItem> itr = cart.getMenuItemList().iterator();
+			double total = 0;
+			while (itr.hasNext()) {
+				total += itr.next().getPrice();
+			}
+			cart.setTotal(total);
+		} else {
+			System.out.println("The cart is Empty");
+		}
+		return cart;
+	}
+
+	@Override
+	public void removeCartItem(long userId, long menuItemId) {
+		// The below initialization may result in NullPointerException and
+		// since the delete option will be there in the cart screen we assume that the
+		// userId is already present and has menuItems
+		Iterator<MenuItem> itr = userCarts.get(userId).getMenuItemList().iterator();
+		MenuItem menuItem = null;
+		while (itr.hasNext()) {
+			menuItem = itr.next();
+			if (menuItem.getId() == menuItemId) {
+				break;
+			}
+			menuItem = null;
+		}
+		userCarts.get(userId).getMenuItemList().remove(menuItem);
+	}
+
+}

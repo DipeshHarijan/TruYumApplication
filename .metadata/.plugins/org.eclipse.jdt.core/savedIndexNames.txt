@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+E:\Java FSD\TruYum Application\.metadata\.plugins\org.eclipse.jdt.core
+74054901.index
+869494836.index

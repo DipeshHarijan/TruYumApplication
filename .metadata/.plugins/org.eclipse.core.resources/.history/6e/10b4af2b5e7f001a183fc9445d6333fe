@@ -1,0 +1,15 @@
+package com.cognizant.truyum.dao;
+
+import com.cognizant.truyum.exception.CartEmptyException;
+
+public class CartDaoCollectionImplTest {
+	public static void main(String args[]) throws CartEmptyException {
+		testAddCartItem();
+	}
+
+	public static void testAddCartItem() throws CartEmptyException {
+		CartDao cartDao = new CartDaoCollectionImpl();
+		cartDao.addCartItem(1, 01L);
+		System.out.println(cartDao.getAllCartItems(1));
+	}
+}

@@ -1,0 +1,16 @@
+package com.cognizant.truyum.dao;
+
+import java.util.Iterator;
+
+public class MenuItemDaoCollectionImplTest {
+	public static void main(String[] args) throws Exception {
+		MenuItemDao items = new MenuItemDaoCollectionImpl();
+		Iterator itr = items.getMenuItemListAdmin().iterator();
+		System.out.println("Id    Name    Price    Active    Date of Launch    Category    Free Delivery    Action");
+		while(itr.hasNext()) {
+			System.out.print(itr.next()+"    ");
+			System.out.println();
+		}
+	}
+
+}

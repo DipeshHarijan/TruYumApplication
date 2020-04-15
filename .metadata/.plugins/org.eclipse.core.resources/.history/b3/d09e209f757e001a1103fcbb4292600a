@@ -1,0 +1,9 @@
+package com.cognizant.truyum.dao;
+
+public class MenuItemDaoCollectionImplTest {
+	public static void main(String[] args) throws Exception {
+		MenuItemDao items = new MenuItemDaoCollectionImpl();
+
+	}
+
+}

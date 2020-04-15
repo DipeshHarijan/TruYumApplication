@@ -1,0 +1,11 @@
+package com.cognizant.truyum.dao;
+
+import java.util.Iterator;
+
+public class MenuItemDaoCollectionImplTest {
+	public static void main(String[] args) throws Exception {
+		MenuItemDao items = new MenuItemDaoCollectionImpl();
+		Iterator itr = items.getMenuItemListAdmin().iterator();
+	}
+
+}
